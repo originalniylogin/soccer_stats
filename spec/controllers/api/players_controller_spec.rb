@@ -54,8 +54,8 @@ RSpec.describe Api::PlayersController, type: :controller do
 
   describe 'GET #check_statistic' do
     let!(:player) { create(:player) }
-    let(:match) { create(:match, home_team: player.team) }
-    let(:statistics) { create_list(:statistic, 3, player: player, match: match, score: Faker::Number.between(from: 10, to: 20)) }
+    let!(:match) { create(:match, home_team: player.team) }
+    let!(:statistics) { create_list(:statistic, 3, player: player, match: match, score: Faker::Number.between(from: 10, to: 20)) }
 
     render_views
 

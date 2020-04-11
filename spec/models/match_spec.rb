@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
-  before(:each) do
-    Faker::UniqueGenerator.clear
-  end
-
   it 'has a valid factory' do
     expect(build(:match)).to be_valid
   end

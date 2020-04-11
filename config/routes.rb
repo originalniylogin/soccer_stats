@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get :check_statistic, on: :member
     end
 
-    resources :statistics_types, only: [:index]
+    resources :statistics_types, only: [:index] do
+      get :rating, on: :member
+    end
   end
 end
