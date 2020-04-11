@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_173235) do
 
   create_table "statistics_types", force: :cascade do |t|
     t.string "name", null: false
-    t.string "desctiption"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_statistics_types_on_name", unique: true
