@@ -5,4 +5,8 @@ class Match < ApplicationRecord
 
   validates :match_date, presence: true
   # TODO: guest and home teams are different
+
+  scope :by_team, ->(team_id) { where('home_team_id = :team_id OR guest_team_id = :team_id', team_id: team_id) }
+  scope :past, -> { where('match_date < ?', DateTime.now) }
+  scope :by_date, -> { order(match_date: :desc) }
 end

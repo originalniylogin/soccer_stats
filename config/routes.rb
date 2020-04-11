@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     resources :players, only: [:index] do
       post :set_statistic, on: :member
+      get :check_statistic, on: :member
     end
   end
 end

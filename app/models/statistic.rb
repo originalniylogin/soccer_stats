@@ -5,6 +5,12 @@ class Statistic < ApplicationRecord
 
   validate :future_matches
 
+  scope :succeed, ->(score) { where('score > ?', score) }
+
+  scope :by_match_and_type, ->(match_id, statistics_type_id) do
+    where(match_id: match_id, statistics_type_id: statistics_type_id)
+  end
+
   private
 
   def future_matches
