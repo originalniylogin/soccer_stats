@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe StatisticsType, type: :model do
+  before(:each) do
+    Faker::UniqueGenerator.clear
+  end
+
   it 'has a valid factory' do
     expect(build(:statistics_type)).to be_valid
   end

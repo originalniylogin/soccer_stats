@@ -6,7 +6,7 @@ module Api
 
     def set_statistic
       @player = Player.find(params[:id])
-      @statistic = player.set_statistic(statistic_params)
+      @statistic = @player.set_statistic(statistic_params)
 
       if @statistic.valid?
         render json: { message: 'Success' }, status: :ok
@@ -18,7 +18,8 @@ module Api
 
     def check_statistic
       @player = Player.find(params[:id])
-      @statistics = @player.check_statistic(statistic_params).includes({ player: :team }, :match, :statistics_type)
+      @statistics = @player.check_statistic(statistics_type_id: params[:statistics_type_id], score: params[:score])
+        .includes({ player: :team }, :match, :statistics_type)
 
       render json: { message: 'Player has not succeed' }, status: :ok unless @statistics.present?
     end

@@ -51,4 +51,26 @@ RSpec.describe Api::PlayersController, type: :controller do
       expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8'
     end
   end
+
+  describe 'GET #check_statistic' do
+    let!(:player) { create(:player) }
+    let(:match) { create(:match, home_team: player.team) }
+    let(:statistics) { create_list(:statistic, 3, player: player, match: match, score: Faker::Number.between(from: 10, to: 20)) }
+
+    render_views
+
+    it 'responses successfully' do
+      get :check_statistic,
+          as: :json,
+          params: {
+            id: player.id,
+            statistics_type_id: statistics.first.statistics_type_id,
+            score: 9,
+          }
+
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:check_statistic)
+      expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8'
+    end
+  end
 end

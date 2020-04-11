@@ -18,13 +18,13 @@ class Player < ApplicationRecord
     end
   end
 
-  def check_statistic(statistic_params)
+  def check_statistic(statistics_type_id:, score:)
     last_matches = Match.by_team(team.id).past.by_date.limit(5)
     last_statistics = statistics.by_match_and_type(
       last_matches.map(&:id),
-      statistic_params[:statistics_type_id]
+      statistics_type_id
     )
 
-    last_statistics.succeed(statistic_params[:score])
+    last_statistics.succeed(score)
   end
 end

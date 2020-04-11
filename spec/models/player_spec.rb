@@ -21,10 +21,10 @@ RSpec.describe Player, type: :model do
   end
 
   describe 'public instance methods' do
-    let(:match) { create(:match, home_team: player.team) }
-    let(:statistics_type) { create(:statistics_type) }
-
     context 'set_statistic' do
+      let(:match) { create(:match, home_team: player.team) }
+      let(:statistics_type) { create(:statistics_type) }
+
       it 'creates or updates allready existed statistic' do
         2.times do
           statistic = player.set_statistic({
@@ -47,6 +47,28 @@ RSpec.describe Player, type: :model do
         })
 
         expect(statistic).not_to be_valid
+      end
+    end
+
+    context 'check_statistic' do
+      let(:player) { create(:player) }
+      let(:match) { create(:match, home_team: player.team) }
+      let(:statistics) { create_list(:statistic, 3, player: player, match: match, score: Faker::Number.between(from: 10, to: 20)) }
+
+      it 'checks if player succeed' do
+        player_results = player.check_statistic(
+          statistics_type_id: statistics.first.statistics_type_id,
+          score: 9,
+        )
+
+        expect(player_results.size).to eq(1)
+
+        player_results = player.check_statistic(
+          statistics_type_id: statistics.first.statistics_type_id,
+          score: 21,
+        )
+
+        expect(player_results.size).to eq(0)
       end
     end
   end
