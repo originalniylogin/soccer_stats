@@ -5,7 +5,7 @@ RSpec.describe Statistic, type: :model do
     expect(build(:statistic)).to be_valid
   end
 
-  let (:statistic) { create(:statistic) }
+  let(:statistic) { create(:statistic) }
 
   describe 'ActiveModel validations' do
     it 'Cannot be associated with future matches' do

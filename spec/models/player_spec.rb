@@ -9,7 +9,7 @@ RSpec.describe Player, type: :model do
     expect(build(:player)).to be_valid
   end
 
-  let (:player) { create(:player) }
+  let(:player) { create(:player) }
 
   describe 'ActiveModel validations' do
     it { expect(player).to validate_presence_of(:name) }

@@ -5,7 +5,7 @@ RSpec.describe Match, type: :model do
     expect(build(:match)).to be_valid
   end
 
-  let (:match) { create(:match) }
+  let(:match) { create(:match) }
 
   describe 'ActiveModel validations' do
     it { expect(match).to validate_presence_of(:match_date) }

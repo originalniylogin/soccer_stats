@@ -9,7 +9,7 @@ RSpec.describe Team, type: :model do
     expect(build(:team)).to be_valid
   end
 
-  let (:team) { create(:team) }
+  let(:team) { create(:team) }
 
   describe 'ActiveModel validations' do
     it { expect(team).to validate_presence_of(:name) }
