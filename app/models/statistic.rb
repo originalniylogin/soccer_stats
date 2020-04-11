@@ -9,7 +9,7 @@ class Statistic < ApplicationRecord
 
   def future_matches
     if match.present? && match.match_date > DateTime.now
-      errors.add(:match, 'Cannot be associated with future matches.')
+      errors.add(:match, 'Future matches cannot have statistics.')
     end
   end
 end

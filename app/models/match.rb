@@ -4,4 +4,5 @@ class Match < ApplicationRecord
   has_many :statistics, dependent: :destroy
 
   validates :match_date, presence: true
+  # TODO: guest and home teams are different
 end
