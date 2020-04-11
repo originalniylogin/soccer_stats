@@ -4,6 +4,7 @@ RSpec.describe Team, type: :model do
   before(:each) do
     Faker::UniqueGenerator.clear
   end
+
   it 'has a valid factory' do
     expect(build(:team)).to be_valid
   end
