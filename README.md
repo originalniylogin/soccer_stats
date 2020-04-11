@@ -1,24 +1,41 @@
-# README
+# Стэк технологий
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* ruby 2.7.1
+* RubyOnRails 6.0.2
+* Postgresql 11.7
 
-Things you may want to cover:
+# Запуск приложения
 
-* Ruby version
+```
+bundle install
+rails db:create db:migrate db:seed
+rails s
+```
 
-* System dependencies
+В переменных окружения необходимо указать данные для авторизации в Postgres. В проекте для этого используется гем `dotenv`.
 
-* Configuration
+# Использование
 
-* Database creation
+В проекте реализованно несколько api-эндпоинтов для демонстрации созданных методов:
 
-* Database initialization
+```
+# Отображает список комманд
+get: /api/teams
 
-* How to run the test suite
+# Отображает список игроков
+get: /api/players
 
-* Services (job queues, cache servers, search engines, etc.)
+# Отображает типы показателей
+get: /api/statistics_types
 
-* Deployment instructions
+# Позволяет отметить, что игрок выполнил показатель в матче
+post: /api/players/:id/set_statistic 
 
-* ...
+# Проверяет, выполнил ли игрок конкретный показатель хотя бы раз
+# за последние 5 матчей
+get: /api/players/:id/check_statistic?statistics_type=&score=
+
+# Отображает топ-5 игроков по конкретному показателю в конкретной
+# команде и по всем командам в целом
+get: /api/statistics_types/:id/rating?team_id=
+```

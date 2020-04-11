@@ -9,6 +9,13 @@ RSpec.describe Match, type: :model do
 
   describe 'ActiveModel validations' do
     it { expect(match).to validate_presence_of(:match_date) }
+    
+    it 'Cannot be associated with same team twice' do
+      team = create(:team)
+      match = build(:match, home_team: team, guest_team: team)
+
+      expect(match).not_to be_valid
+    end
   end
 
   describe 'ActiveRecord associations' do
