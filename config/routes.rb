@@ -6,5 +6,7 @@ Rails.application.routes.draw do
       post :set_statistic, on: :member
       get :check_statistic, on: :member
     end
+
+    resources :statistics_types, only: [:index]
   end
 end

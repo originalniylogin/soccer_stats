@@ -4,6 +4,7 @@ class Statistic < ApplicationRecord
   belongs_to :statistics_type
 
   validate :future_matches
+  # TODO: validate that player actually plays for the team
 
   scope :succeed, ->(score) { where('score > ?', score) }
 
